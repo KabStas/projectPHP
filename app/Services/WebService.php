@@ -10,17 +10,16 @@ class WebService
         return response(phpinfo(),200);
     }
 
-    public function checkingForPalindrome($request) {
+    public function checkingForPalindrome($string) {
 
-        $string = $request->phrase;
         $signs = array("?", "!", ".", ",", ":", '"',"/", "%" );    
         $string = str_replace($signs, "", $string);
         $reversedString = strrev($string);
 
         if (strcasecmp($string, $reversedString) == 0) {
-            echo 'Entered string is palindrome';
+            return 'Entered string is palindrome';
         } else {
-            echo 'Entered string is NOT palindrome';
+            return 'Entered string is NOT palindrome';
         }   
     }
 
