@@ -14,11 +14,12 @@ class WebService
 
         $signs = array("?", "!", ".", ",", ":", '"',"/", "%" );    
         $string = str_replace($signs, "", $string);
+        //$convertedText = mb_convert_encoding($string, 'utf-8', mb_detect_encoding($string));
         $reversedString = strrev($string);
 
-        if (strcasecmp($string, $reversedString) == 0) {
+        if (strcasecmp($string, $reversedString) == 0) { 
             return 'Entered string is palindrome';
-        } else {
+        } else {   
             return 'Entered string is NOT palindrome';
         }   
     }

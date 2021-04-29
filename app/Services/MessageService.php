@@ -20,7 +20,13 @@ class MessageService
 
     public function getMessages() {
         
-        $response = $this->client->request('GET', 'getUpdates');
+        
+        $response = $this->client->request('GET', 'getUpdates',
+            [
+                'query' => [
+                    'offset' => -1
+                ]
+            ]);
 
         if ($response->getStatusCode() === 200) {
             $messages = json_decode($response->getBody()->getContents(), true);
@@ -28,7 +34,6 @@ class MessageService
             foreach ($messages['result'] as $result) {
                 if (isset($result['message']['text'])) {
 
-                    $update_id = $result['update_id'];
                     $text = $result['message']['text'];
                     $chatId = $result['message']['from']['id'];
                     $webService = new WebService();   
@@ -41,11 +46,12 @@ class MessageService
 
     public function sendMessages($chatId, $text) {
 
-        $this->client->request('GET', 'sendMessage', [
-            'query' => [
-                'chat_id' => $chatId,
-                'text' => $text,
-            ]
-        ]);   
+        $this->client->request('GET', 'sendMessage', 
+            [
+                'query' => [
+                    'chat_id' => $chatId,
+                    'text' => $text,
+                ]
+            ]);   
     }
 }
