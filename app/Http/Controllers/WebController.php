@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\WebService;
 use App\Http\Requests\QueryRequest;
+use Illuminate\Http\Response;
 
 class WebController extends Controller {
 
     private $webService;
 
     public function __construct(WebService $webService) {
-        $this->webService = $webService;
+        $this->webService = $webService; 
     }
 
     public function outputtingPHPInfo() {
@@ -28,4 +29,12 @@ class WebController extends Controller {
         
         $this->webService->checkingForIP();
     }
+
+    public function searchingData(QueryRequest $request) {
+
+       $this->webService->searchingData($request);
+    }
+
+
+
 }

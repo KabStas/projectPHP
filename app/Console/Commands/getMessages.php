@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\MessageService;
-//use App\Services\WebService;
+use App\Services\GifService;
+use App\Models\User;
 
 class getMessages extends Command
 {
@@ -39,11 +40,12 @@ class getMessages extends Command
      */
     public function handle()
     {
-        $message = new MessageService();
+        //$message = new GifService();
+        $message = new User();
         //$palindrome = new WebService1();
         //dd($palindrome->checkingForPalindrome());
-        //dd($message->getMessages());
-        $message->getMessages();
+        dd($message->searchingData('KabStan'));
+        //$message->getMessages();
         //dd($message->sendMessage());
         return 0;
     }

@@ -3,6 +3,9 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\QueryRequest;
+use Illuminate\Http\Response;
 
 class WebService
 {
@@ -35,5 +38,12 @@ class WebService
             $result = "белый";
         }
         echo "ВАШ IP: " . $ip . "</br> IP: " . $result;
+    }
+
+    public static function searchingData($string) {
+
+        $collection = collect(User::all());
+        $filtered = $collection->where('username', $string);
+        return response()->json($filtered, 200);
     }
 }

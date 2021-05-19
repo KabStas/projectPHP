@@ -30,6 +30,7 @@ class MessageService
 
         if ($response->getStatusCode() === 200) {
             $messages = json_decode($response->getBody()->getContents(), true);
+            //dd($messages);
             
             foreach ($messages['result'] as $result) {
                 if (isset($result['message']['text'])) {

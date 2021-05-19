@@ -19,6 +19,12 @@ Route::get('/', function () {
 
 Route::get('/info', [App\Http\Controllers\WebController::class, 'outputtingPHPInfo']);
 Route::get('/ip', [App\Http\Controllers\WebController::class, 'checkingForIP']);
+Route::get('/gif', [App\Http\Controllers\GifController::class, 'gif']);
+Route::get('/user', [App\Http\Controllers\WebController::class, 'searchingData']);
+
+// Route::middleware('phraseMiddleware')->group(function () {
+//     Route::get('/user', [App\Http\Controllers\WebController::class, 'searchingData']);
+// });
 
 Route::middleware('phraseMiddleware')->group(function () {
     Route::get('/check', [App\Http\Controllers\WebController::class, 'checkingForPalindrome']);
